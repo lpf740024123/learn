@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="generator.properties" />
+	<!-- 指定数据连接驱动jar地址 -->
+	<classPathEntry location="${classPath}" />
+	<!-- 一个数据库一个context -->
+	<context id="base" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc_driver}"
+			connectionURL="${jdbc_url}" userId="${jdbc_user}" password="${jdbc_password}" />
+
+		<javaModelGenerator targetPackage="${path}.entity"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${path}.mapping" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!--javaClientGenerator的type类型   
+			1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
+
+            2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；
+
+            3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
+         -->
+		<javaClientGenerator targetPackage="${path}.dao"
+			targetProject="${project}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="student" domainObjectName="Student"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
+	
+	<context id="cms" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc_driver_cms}"
+			connectionURL="${jdbc_url_cms}" userId="${jdbc_user_cms}" password="${jdbc_password_cms}" />
+
+		<javaModelGenerator targetPackage="${path_cms}.entity"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${path_cms}.mapping" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="${path_cms}.dao"
+			targetProject="${project}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"/> -->
+
+		<table tableName="student_cms" domainObjectName="StudentCMS"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
+	
+	<context id="mall" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc_driver_mall}"
+			connectionURL="${jdbc_url_mall}" userId="${jdbc_user_mall}" password="${jdbc_password_mall}" />
+
+		<javaModelGenerator targetPackage="${path_mall}.entity"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${path_mall}.mapping" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="${path_mall}.dao"
+			targetProject="${project}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"/> -->
+
+		<table tableName="student_mall" domainObjectName="StudentMall"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
+	
+	<context id="resource" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc_driver_resource}"
+			connectionURL="${jdbc_url_resource}" userId="${jdbc_user_resource}" password="${jdbc_password_resource}" />
+
+		<javaModelGenerator targetPackage="${path_resource}.entity"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${path_resource}.mapping" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="${path_resource}.dao"
+			targetProject="${project}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"/> -->
+
+		<table tableName="student_resource" domainObjectName="StudentResource"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
+	
+	<context id="exam" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc_driver_exam}"
+			connectionURL="${jdbc_url_exam}" userId="${jdbc_user_exam}" password="${jdbc_password_exam}" />
+
+		<javaModelGenerator targetPackage="${path_exam}.entity"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${path_exam}.mapping" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="${path_exam}.dao"
+			targetProject="${project}" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"/> -->
+
+		<table tableName="student_exam" domainObjectName="StudentExam"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
+	
+	
+	
+	
+</generatorConfiguration>
