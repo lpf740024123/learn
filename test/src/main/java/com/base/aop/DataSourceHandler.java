@@ -66,7 +66,7 @@ public class DataSourceHandler {
 	
     public void afterThrowing(JoinPoint joinPoint,Throwable error){
         System.out.println("AOP AfterThrowing Advice..." + error);
-        System.out.println("AfterThrowing...");
+        System.out.println("AfterThrowing...111222");
     }
     
 }
