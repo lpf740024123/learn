@@ -13,7 +13,7 @@
 	<bean id="baseDataSourceHandler" class="com.base.aop.DataSourceHandler"/>
 	
 	<aop:config>
-	<!-- 	切换base数据源 -->
+		切换base数据源
 		<aop:aspect id="cutBaseDataSource" ref="baseDataSourceHandler">
 			<aop:pointcut id="cutBase" expression="execution(* com.base.dao.*Mapper.*(..))"/>
 			<aop:before pointcut-ref="cutBase" method="before"/>
