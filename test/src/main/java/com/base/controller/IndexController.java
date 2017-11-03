@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.base.datasource.DataSourceContextHolder;
 import com.base.datasource.DataSourceType;
@@ -26,6 +27,7 @@ public class IndexController {
 //		studentService.insert(stu);
 		StudentResource sr = studentService.selectByPrimaryKey(id);
 		model.addAttribute("lz", "测试完美");
+		ModelAndView mo = new ModelAndView();
 		return "test";
 	}
 	

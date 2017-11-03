@@ -46,6 +46,11 @@ public class StudentServiceTest extends BaseJunit{
 		System.out.println(studentService.selectByPrimaryKey(1));
 	}
 	
+	@Test
+	public void seleTest1(){
+		System.out.println(studentService.select(1));
+	}
+	
 	public static void main(String[] args) {
 		ApplicationContext con = new ClassPathXmlApplicationContext("spring-mvc.xml","spring-mybatis.xml");
 		StudentMapper studentMapper = con.getBean(StudentMapper.class);

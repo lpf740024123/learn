@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/tx   
+        				http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        				http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	
+	<bean id="baseDataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
+		<!-- 标识 -->
+		<property name="uniqueResourceName" value="baseMysqlNonXADataSource"/>
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"/>
+		<property name="user" value="${username}"/>
+		<property name="password" value="${password}"/>
+		<property name="poolSize" value="${poolSize}"/>
+		<property name="maxPoolSize" value="${maxPoolSize}"/>
+		<property name="maxIdleTime" value="${maxIdleTime}"/>
+		
+	</bean>
+	
+	<!-- base 库  dao层所使用的 sqlSessionFactory -->
+	<bean id="baseSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="baseDataSource"/>
+		<property name="mapperLocations" value="classpath*:com/base/mapping/*.xml"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.base.dao" />
+		<!-- 配置不同的数据源使用不同的 sqlSessionFactory  -->
+		<property name="sqlSessionFactoryBeanName" value="baseSqlSessionFactory"></property>
+	</bean>
+		
+</beans>

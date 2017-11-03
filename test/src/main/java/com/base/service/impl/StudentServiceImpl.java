@@ -2,6 +2,7 @@ package com.base.service.impl;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.base.dao.StudentMapper;
@@ -20,41 +21,55 @@ import com.resource.entity.StudentResource;
 
 @Service("studentService")
 public class StudentServiceImpl implements StudentService {
-	@Resource
+	@Autowired
 	public StudentMapper sm1;
-	@Resource
+	@Autowired
 	public StudentCMSMapper sm2;
-	@Resource
+	@Autowired
 	public StudentMallMapper sm3;
-	@Resource
+	@Autowired
 	public StudentResourceMapper sm4;
-	@Resource
+	@Autowired
 	public StudentExamMapper sm5;
 	@Override
 	public StudentResource selectByPrimaryKey(Integer id){
-		DataSourceContextHolder.setDbType(DataSourceType.RESOURCE);
+	//	DataSourceContextHolder.setDbType(DataSourceType.RESOURCE);
 		StudentResource s4 = sm4.selectByPrimaryKey(id);
-		DataSourceContextHolder.setDbType(DataSourceType.CMS);
+	//	System.out.println(DataSourceContextHolder.getDbType());
+	//	DataSourceContextHolder.setDbType(DataSourceType.CMS);
 		StudentCMS s2 = sm2.selectByPrimaryKey(id);
-		DataSourceContextHolder.setDbType(DataSourceType.BASE);
+	//	System.out.println(DataSourceContextHolder.getDbType());
+	//	DataSourceContextHolder.setDbType(DataSourceType.BASE);
 		Student s1 = sm1.selectByPrimaryKey(id);
-		DataSourceContextHolder.setDbType(DataSourceType.MALL);
+	//	System.out.println(DataSourceContextHolder.getDbType());
+	//	DataSourceContextHolder.setDbType(DataSourceType.MALL);
 		StudentMall s3 = sm3.selectByPrimaryKey(id);
-		DataSourceContextHolder.setDbType(DataSourceType.EXAM);
+	//	System.out.println(DataSourceContextHolder.getDbType());
+	//	DataSourceContextHolder.setDbType(DataSourceType.EXAM);
 		StudentExam s5 = sm5.selectByPrimaryKey(id);
+	//	System.out.println(DataSourceContextHolder.getDbType());
 		return s4;
 	}
-	
+	@Override
+	public Student select(Integer id){
+		DataSourceContextHolder.setDbType(DataSourceType.BASE);
+		Student s1 = sm1.selectByPrimaryKey(id);
+		DataSourceContextHolder.setDbType(DataSourceType.CMS);
+		StudentCMS s2 = sm2.selectByPrimaryKey(id);
+		System.out.println(s2);
+		System.out.println(DataSourceContextHolder.getDbType());
+		DataSourceContextHolder.setDbType(DataSourceType.MALL);
+		StudentMall s3 = sm3.selectByPrimaryKey(id);
+		System.out.println(DataSourceContextHolder.getDbType());
+		return s1;
+	}
 	@Override
 	public int insert(Student stu) {
 		// TODO Auto-generated method stub
-		DataSourceContextHolder.setDbType(DataSourceType.BASE);
-		int s = sm1.insert(stu);
-		
-		DataSourceContextHolder.setDbType(DataSourceType.EXAM);
 		StudentExam stue = new StudentExam(stu);
 		int s1 = sm5.insert(stue);
-		return 0;
+		int s = sm1.insert(stu);
+		return s1+s;
 	}
 	
 	

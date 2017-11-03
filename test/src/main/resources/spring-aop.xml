@@ -12,12 +12,20 @@
 	>
 	<bean id="baseDataSourceHandler" class="com.base.aop.DataSourceHandler"/>
 	
-	<aop:config>
+	<!-- <aop:config>
 		切换base数据源
 		<aop:aspect id="cutBaseDataSource" ref="baseDataSourceHandler">
 			<aop:pointcut id="cutBase" expression="execution(* com.base.dao.*Mapper.*(..))"/>
-			<aop:before pointcut-ref="cutBase" method="before"/>
+			<aop:before pointcut-ref="cutBase" method="beforeBase" />
+			<aop:pointcut id="cutCms" expression="execution(* com.cms.dao.*Mapper.*(..))"/>
+			<aop:before pointcut-ref="cutCms" method="beforeCms" />
+			<aop:pointcut id="cutExam" expression="execution(* com.exam.dao.*Mapper.*(..))"/>
+			<aop:before pointcut-ref="cutExam" method="beforeExam" />
+			<aop:pointcut id="cutMall" expression="execution(* com.mall.dao.*Mapper.*(..))"/>
+			<aop:before pointcut-ref="cutMall" method="beforeMall" />
+			<aop:pointcut id="cutResource" expression="execution(* com.resource.dao.*Mapper.*(..))"/>
+			<aop:before pointcut-ref="cutResource" method="beforeResource" />
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
 
 </beans>

@@ -29,11 +29,38 @@ public class DataSourceHandler {
 	 * @date: 2017-10-26 下午2:47:32
 	 *
 	 */
-	public void before(JoinPoint joinPoint){
+	public void beforeBase(JoinPoint joinPoint){
+		cutDataSource(DataSourceType.BASE);
+	}
+	
+	public void beforeCms(JoinPoint joinPoint){
+		cutDataSource(DataSourceType.CMS);
+	}
+	
+	public void beforeExam(JoinPoint joinPoint){
+		cutDataSource(DataSourceType.EXAM);
+	}
+	public void beforeMall(JoinPoint joinPoint){
+		cutDataSource(DataSourceType.MALL);
+	}
+	public void beforeResource(JoinPoint joinPoint){
+		cutDataSource(DataSourceType.RESOURCE);
+	}
+	
+	/**
+	 * 切换数据源
+	 * @Title: cutDataSource
+	 * @Description:TODO(...)
+	 * @see <p></p>
+	 * @param type
+	 * @author 刘鹏飞
+	 * @date: 2017-11-2 下午2:23:13
+	 *
+	 */
+	private void cutDataSource(String type){
 		logger.info("当前线程数据源链接切换前："+DataSourceContextHolder.getDbType());
-		logger.info(joinPoint.getSignature().getName());
-		DataSourceContextHolder.setDbType(DataSourceType.BASE);
-		logger.info("当前线程数据源链接切换："+DataSourceType.BASE);
+		DataSourceContextHolder.setDbType(type);
+		logger.info("当前线程数据源链接切换："+DataSourceContextHolder.getDbType());
 	}
 	
 	public void after(JoinPoint joinPoint){
