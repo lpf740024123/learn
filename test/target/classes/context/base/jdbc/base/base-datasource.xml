@@ -15,9 +15,32 @@
         				http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         				http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-	
-	<bean id="baseDataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
-		<!-- 标识 -->
+    
+    <bean id="baseDataSource"  parent="abstractXADataSource">
+    	<property name="uniqueResourceName" value="baseDB" />
+    	<property name="xaProperties">
+    		<props>
+    			 <prop key="driverClassName">${driverClassName}</prop>
+    			 <prop key="url">${url}</prop>
+    			 <prop key="password">${password}</prop>
+    			 <prop key="username">${username}</prop>
+    			 <prop key="initialSize">${initialSize}</prop>
+    			 <prop key="maxActive">${maxActive}</prop>
+    			 <prop key="minIdle">${minIdle}</prop>
+    			 <prop key="maxWait">${maxWait}</prop>
+    			 <prop key="validationQuery">${validationQuery}</prop>  
+    			 <prop key="testOnBorrow">false</prop>  
+                 <prop key="testOnReturn">false</prop>  
+                 <prop key="testWhileIdle">true</prop>  
+                 <prop key="removeAbandoned">true</prop>  
+                 <prop key="removeAbandonedTimeout">1800</prop>  
+                 <prop key="logAbandoned">true</prop>  
+                 <prop key="filters">mergeStat</prop>
+    		</props>
+    	</property>
+    </bean>
+	<!-- <bean id="baseDataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
+		标识
 		<property name="uniqueResourceName" value="baseMysqlNonXADataSource"/>
 		<property name="driverClassName" value="${driver}"></property>
 		<property name="url" value="${url}"/>
@@ -27,7 +50,7 @@
 		<property name="maxPoolSize" value="${maxPoolSize}"/>
 		<property name="maxIdleTime" value="${maxIdleTime}"/>
 		
-	</bean>
+	</bean> -->
 	
 	<!-- base 库  dao层所使用的 sqlSessionFactory -->
 	<bean id="baseSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -26,6 +26,15 @@ public class IndexController {
 //		Student stu = new Student(1, "张三", 1, 15, "清华");
 //		studentService.insert(stu);
 		StudentResource sr = studentService.selectByPrimaryKey(id);
+		try {
+			
+			Student stu = new Student(1, "张三", 1, 15, "清华");
+			studentService.insert(stu);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println(" Atomikos! jta分布式事务测试");
+		}
 		model.addAttribute("lz", "测试完美");
 		ModelAndView mo = new ModelAndView();
 		return "test";

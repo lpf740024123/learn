@@ -31,6 +31,7 @@
         <property name="userTransaction">
             <ref bean="atomikosUserTransaction" />
         </property>
+        <property name="allowCustomIsolationLevels" value="true"/>   
     </bean>    
 	<tx:advice id="txAdvice" transaction-manager="springTransactionManager">
 		<tx:attributes>
@@ -38,6 +39,6 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:advisor advice-ref="txAdvice" pointcut="exeuction(* com.*.service..*Impl.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="(execution(* com.*.service..*Impl.*(..)))"/>
 	</aop:config>
 </beans>

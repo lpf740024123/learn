@@ -17,11 +17,16 @@
                         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	<!-- 自动扫描该包 --> 
 	<context:component-scan base-package="com" />
+	 <!-- 启动AspectJ支持 -->  
+	<aop:aspectj-autoproxy />  
 	<!--  加载配置文件  -->
 	<import resource="classpath:context/envPropertyLoader.xml"/>
-	
 	<!--  加载数据源文件 -->
 	<import resource="classpath:context/base/jdbc/context-datasource.xml"/>
+	<!--  加载事务配置 -->
+	<import resource="classpath:context/base/spring/tx/context-spring-tx.xml"/>
+	<!--  加载mvc配置-->	
+	<import resource="classpath:context/base/spring/mvc/context-spring-mvc.xml"/>
 	
 	
 </beans>

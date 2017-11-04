@@ -16,8 +16,31 @@
         				http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	
-	<bean id="mallDataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
-		<!-- 标识 -->
+	<bean id="mallDataSource"  parent="abstractXADataSource">
+    	<property name="uniqueResourceName" value="mallDB" />
+    	<property name="xaProperties">
+    		<props>
+    			 <prop key="driverClassName">${driverClassName}</prop>
+    			 <prop key="url">${url_mall}</prop>
+    			 <prop key="password">${password_mall}</prop>
+    			 <prop key="username">${username_mall}</prop>
+    			 <prop key="initialSize">${initialSize}</prop>
+    			 <prop key="maxActive">${maxActive}</prop>
+    			 <prop key="minIdle">${minIdle}</prop>
+    			 <prop key="maxWait">${maxWait}</prop>
+    			 <prop key="validationQuery">${validationQuery}</prop>  
+    			 <prop key="testOnBorrow">false</prop>  
+                 <prop key="testOnReturn">false</prop>  
+                 <prop key="testWhileIdle">true</prop>  
+                 <prop key="removeAbandoned">true</prop>  
+                 <prop key="removeAbandonedTimeout">1800</prop>  
+                 <prop key="logAbandoned">true</prop>  
+                 <prop key="filters">mergeStat</prop>
+    		</props>
+    	</property>
+    </bean>
+	<!-- <bean id="mallDataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
+		标识
 		<property name="uniqueResourceName" value="mallMysqlNonXADataSource"/>
 		<property name="driverClassName" value="${driver_mall}"></property>
 		<property name="url" value="${url_mall}"></property>
@@ -26,7 +49,7 @@
 		<property name="poolSize" value="${poolSize}"/>
 		<property name="maxPoolSize" value="${maxPoolSize}"/>
 		<property name="maxIdleTime" value="${maxIdleTime}"/>
-	</bean>
+	</bean> -->
 	<!-- mall 库  dao层所使用的 sqlSessionFactory -->
 	<bean id="mallSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="mallDataSource"/>

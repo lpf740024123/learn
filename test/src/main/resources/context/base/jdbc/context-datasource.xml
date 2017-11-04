@@ -15,6 +15,20 @@
         				http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         				http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	<!-- init-method="init" -->
+	<bean id="abstractXADataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean"
+	 destroy-method="close" abstract="true">
+	 	<property name="xaDataSourceClassName" value="${xaDataSourceClassName}"/> 
+		<property name="poolSize" value="${poolSize}"/>
+		<property name="maxPoolSize" value="${maxPoolSize}"/>
+		<property name="maxIdleTime" value="${maxIdleTime}"/>
+		<property name="borrowConnectionTimeout" value="${borrowConnectionTimeout}"/>
+		<property name="reapTimeout" value="${reapTimeout}"/>
+		<property name="maintenanceInterval" value="${maintenanceInterval}"/>
+		<property name="loginTimeout" value="${loginTimeout}"/>
+		<property name="testQuery" value="${validationQuery}"/>
+	</bean>
+	
 	
 	<!-- base包 数据源及 mybatis 配置 -->
 	<import resource="classpath:context/base/jdbc/base/base-datasource.xml"/>

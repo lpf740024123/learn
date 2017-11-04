@@ -3,7 +3,9 @@ package com.base;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.base.dao.StudentMapper;
 import com.base.entity.Student;
 import com.base.service.StudentService;
@@ -27,7 +29,7 @@ public class TestMybatis extends BaseJunit{
 		System.out.println(studentMapper.selectByPrimaryKey(1));
 	}
 	/**
-	 * 事务测试
+	 * 事务测试 Atomikos! jta分布式事务测试
 	 * @Title: transTest
 	 * @Description:TODO(...)
 	 * @see <p></p>
